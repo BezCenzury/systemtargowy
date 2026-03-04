@@ -2,9 +2,33 @@
 <html lang="pl">
 
 <head>
+    <!-- Google Consent Mode V2 - Domyślne Ustawienia -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'wait_for_update': 500
+        });
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5RVBKJGM');</script>
+    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>System Zbierania Leadów | Zabezpiecz zwrot z targów</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
     <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,6 +38,9 @@
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Cookie Consent CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
 
     <!-- Tailwind Configuration -->
     <script>
@@ -44,10 +71,30 @@
     </style>
 </head>
 
-<body class="font-sans text-slate-900 antialiased bg-white selection:bg-blue-100 selection:text-blue-900">
+<body id="top" class="font-sans text-slate-900 antialiased bg-white selection:bg-blue-100 selection:text-blue-900">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5RVBKJGM" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <!-- SECTION: HERO -->
-    <section class="bg-slate-50 py-24 lg:py-32 px-4 relative overflow-hidden">
+    <!-- STICKY NAVBAR -->
+    <nav id="mainNav"
+        class="fixed w-full top-0 z-50 transition-all duration-300 py-3 bg-white border-b border-transparent">
+        <div class="max-w-6xl mx-auto px-4 flex justify-between items-center">
+            <!-- Lewa strona -->
+            <a href="#top" class="text-base md:text-lg font-bold text-slate-900 tracking-tight">System<span
+                    class="text-blue-600">Targowy</span></a>
+
+            <!-- Prawa strona -->
+            <div class="flex gap-4 md:gap-6 text-xs md:text-sm font-medium">
+                <a href="#jak-dzialamy" class="text-slate-600 hover:text-blue-600 transition-colors">Jak działamy</a>
+                <a href="#pricing" class="text-slate-600 hover:text-blue-600 transition-colors">Cennik</a>
+                <a href="#kontakt" class="text-blue-600 hover:text-blue-800 transition-colors">Kontakt</a>
+            </div>
+        </div>
+    </nav>
+    <section class="bg-slate-50 py-24 lg:py-32 px-4 relative overflow-hidden mt-12">
         <div class="max-w-4xl mx-auto text-center relative z-10">
             <h1
                 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight mb-6 tracking-tight">
@@ -117,7 +164,7 @@
     </section>
 
     <!-- SECTION: JAK TO DZIAŁA -->
-    <section class="bg-slate-50 py-20 lg:py-28 px-4 border-y border-slate-200">
+    <section id="jak-dzialamy" class="bg-slate-50 py-20 lg:py-28 px-4 border-y border-slate-200">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">2 drogi do pełnej kontroli
@@ -638,7 +685,7 @@
                             dopasowaną ofertę pod Twoje nadchodzące targi.</p>
                     </div>
 
-                    <form action="#" method="POST" class="space-y-6">
+                    <form id="contactForm" action="#" method="POST" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
                                 <label for="first_name" class="block text-sm font-medium text-slate-700 mb-1">Imię <span
@@ -681,9 +728,14 @@
                                     class="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-600 bg-slate-50 cursor-pointer">
                             </div>
                             <div class="ml-3 text-sm">
-                                <label for="consent" class="font-medium text-slate-600 cursor-pointer">
-                                    Wyrażam zgodę na kontakt mailowy i/lub telefoniczny w celu przesłania i
-                                    przedstawienia oferty. <span class="text-blue-600">*</span>
+                                <label for="consent"
+                                    class="font-medium text-slate-600 cursor-pointer text-xs leading-relaxed">
+                                    Wyrażasz zgodę na kontakt telefoniczny i/lub mailowy w celu obsługi niniejszego
+                                    zgłoszenia. Wyrażasz zgodę na otrzymywanie informacji handlowych środkami
+                                    komunikacji elektronicznej wysyłanymi przez systemtargowy.pl oraz na wykorzystanie
+                                    komunikacji email w celach marketingowych (<a href="polityka-prywatnosci.html"
+                                        target="_blank" class="text-blue-600 hover:underline font-semibold">Polityka
+                                        Prywatności</a>) <span class="text-blue-600">*</span>
                                 </label>
                             </div>
                         </div>
@@ -692,13 +744,15 @@
                             class="w-full px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-md transition-all transform hover:-translate-y-0.5 text-lg">
                             Wyślij wiadomość
                         </button>
+                        <div id="formStatus" style="display: none;"></div>
                     </form>
                 </div>
 
                 <!-- Prawa kolumna: Bezpośredni kontakt -->
-                <div class="lg:w-1/3 flex flex-col justify-center mt-10 lg:mt-0 max-w-md mx-auto lg:max-w-none">
+                <div
+                    class="lg:w-[38%] xl:w-1/3 flex flex-col justify-center mt-10 lg:mt-0 max-w-md mx-auto lg:max-w-none">
                     <div
-                        class="bg-slate-50 p-8 md:p-10 rounded-2xl border border-slate-200 h-full flex flex-col justify-center">
+                        class="bg-slate-50 p-8 md:p-10 lg:p-8 xl:p-10 rounded-2xl border border-slate-200 h-full flex flex-col justify-center">
                         <h3 class="text-2xl font-bold text-slate-900 mb-8">Lub skontaktuj się natychmiast</h3>
 
                         <div class="space-y-8">
@@ -732,8 +786,8 @@
                                 <div class="flex flex-col justify-center h-14">
                                     <span
                                         class="block text-sm font-medium text-slate-500 mb-0.5 tracking-wide uppercase">Mail</span>
-                                    <a href="mailto:kontakt@twojastrona.pl"
-                                        class="text-lg font-bold text-slate-900 hover:text-blue-600 transition-colors break-all">kontakt@twojastrona.pl</a>
+                                    <a href="mailto:kontakt@systemtargowy.pl"
+                                        class="text-base lg:text-[15px] xl:text-lg tracking-tight font-bold text-slate-900 hover:text-blue-600 transition-colors break-all">kontakt@systemtargowy.pl</a>
                                 </div>
                             </div>
                         </div>
@@ -858,12 +912,220 @@
                 <div class="flex gap-6">
                     <a href="polityka-prywatnosci.html" target="_blank"
                         class="hover:text-white transition-colors">Polityka prywatności</a>
+                    <a href="#" data-cc="show-preferencesModal" class="hover:text-white transition-colors">Ustawienia
+                        Cookies</a>
                     <a href="#kontakt" class="hover:text-white transition-colors">Kontakt</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('contactForm');
+            const statusDiv = document.getElementById('formStatus');
+            const webhookUrl = 'https://hook.eu2.make.com/upegpnbboark4ebpu4cptdz6ocyyubnx';
+            const storageKey = 'savedFormData';
+
+            // Funkcja do walidacji e-mail
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(String(email).toLowerCase());
+            }
+
+            // Funkcja do wyświetlania wiadomości z odpowiednim statusem
+            function showMessage(msg, type) {
+                statusDiv.textContent = msg;
+                statusDiv.className = `mt-4 text-center text-sm font-medium p-4 rounded-lg break-words ${type === 'error' ? 'bg-red-50 text-red-600 border border-red-200' : 'bg-green-50 text-green-700 border border-green-200'}`;
+                statusDiv.style.display = 'block';
+            }
+
+            // Funkcja asynchroniczna do wysyłki twardych danych za pomocą fetch
+            async function sendData(data) {
+                try {
+                    const response = await fetch(webhookUrl, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    });
+                    return response.ok;
+                } catch (error) {
+                    return false;
+                }
+            }
+
+            // Przechwycenie standardowego wysyłania (submit)
+            if (form) {
+                form.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    statusDiv.style.display = 'none';
+
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const originalBtnText = submitBtn.innerText;
+                    submitBtn.disabled = true;
+                    submitBtn.innerText = 'Wysyłanie...';
+
+                    const formData = new FormData(form);
+                    const data = Object.fromEntries(formData.entries());
+                    data.timestamp = new Date().toISOString(); // Dodajemy datę, dla łatwiejszego trackingu po stronie Make
+
+                    // Ręczna Walidacja maila FrontEndowa
+                    if (!validateEmail(data.email)) {
+                        showMessage('Proszę podać poprawny adres e-mail.', 'error');
+                        submitBtn.disabled = false;
+                        submitBtn.innerText = originalBtnText;
+                        return;
+                    }
+
+                    const success = await sendData(data);
+
+                    if (success) {
+                        window.location.href = 'dziekujemy.html';
+                        form.reset();
+                    } else {
+                        // Zapisanie do Local Storage, jeśli wysyłka się nie powiedzie np. przez brak neta
+                        const existingData = JSON.parse(localStorage.getItem(storageKey) || '[]');
+                        existingData.push(data);
+                        localStorage.setItem(storageKey, JSON.stringify(existingData));
+
+                        showMessage('Brak połączenia z siecią lub błąd serwera. Twoje zapytanie zostało zaszyfrowane w pamięci przeglądarki i zostanie wysłane automatycznie w tle, gdy odzyskasz połączenie z siecią.', 'error');
+                        form.reset();
+                    }
+
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = originalBtnText;
+                });
+            }
+
+            // Mechanizm odzyskiwania - próba co 30 sekund w tle 
+            setInterval(async () => {
+                const existingData = JSON.parse(localStorage.getItem(storageKey) || '[]');
+                if (existingData.length === 0) return; // Jeśli nic nie ma, to ubijamy cykl
+
+                // Próbujemy wysłać pierwsze zapytanie w kolejce 
+                const dataToSend = existingData[0];
+                const success = await sendData(dataToSend);
+
+                if (success) {
+                    existingData.shift(); // Usuwa pomyślnie wysłany element z przodu listy
+                    localStorage.setItem(storageKey, JSON.stringify(existingData));
+
+                    // Pokazujemy komunikat jak lista faktycznie opustoszeje
+                    if (existingData.length === 0) {
+                        if (statusDiv) {
+                            showMessage('Zaległe zapytania z trybu offline zostały właśnie przed momentem pomyślnie wysłane w tle!', 'success');
+                            // Schowaj powiadomienie po paru sekundach
+                            setTimeout(() => { statusDiv.style.display = 'none'; }, 8000);
+                        }
+                    }
+                }
+            }, 30000); // Równe 30000 milisekund = 30 sekund
+
+            // Efekt prześwitywania górnego menu przy scrollowaniu
+            const nav = document.getElementById('mainNav');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 20) {
+                    nav.classList.add('bg-white/70', 'backdrop-blur-md', 'border-slate-200', 'shadow-sm');
+                    nav.classList.remove('bg-white', 'border-transparent');
+                } else {
+                    nav.classList.add('bg-white', 'border-transparent');
+                    nav.classList.remove('bg-white/70', 'backdrop-blur-md', 'border-slate-200', 'shadow-sm');
+                }
+            });
+        });
+    </script>
+
+    <!-- Skrypt Cookie Consent -->
+    <script type="module">
+        import 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js';
+
+        CookieConsent.run({
+            guiOptions: {
+                consentModal: {
+                    layout: 'box',
+                    position: 'bottom right',
+                    equalWeightButtons: true,
+                    flipButtons: false
+                },
+                preferencesModal: {
+                    layout: 'box',
+                    position: 'right',
+                    equalWeightButtons: true,
+                    flipButtons: false
+                }
+            },
+            categories: {
+                necessary: { readOnly: true },
+                analytics: {},
+                marketing: {}
+            },
+            language: {
+                default: 'pl',
+                autoDetect: 'browser',
+                translations: {
+                    pl: {
+                        consentModal: {
+                            title: 'Szanujemy Twoją prywatność',
+                            description: 'Używamy plików cookies, aby zapewnić prawidłowe działanie strony systemtargowy.pl, analizować ruch oraz prowadzić działania reklamowe.',
+                            acceptAllBtn: 'Akceptuj wszystkie',
+                            acceptNecessaryBtn: 'Tylko niezbędne',
+                            showPreferencesBtn: 'Zarządzaj opcjami',
+                            footer: '<a href="polityka-prywatnosci.html" target="_blank">Polityka Prywatności</a>'
+                        },
+                        preferencesModal: {
+                            title: 'Preferencje plików cookies',
+                            acceptAllBtn: 'Akceptuj wszystkie',
+                            acceptNecessaryBtn: 'Tylko niezbędne',
+                            savePreferencesBtn: 'Zapisz ustawienia',
+                            closeIconLabel: 'Zamknij okno',
+                            sections: [
+                                {
+                                    title: 'Niezbędne pliki cookies',
+                                    description: 'Wymagane do poprawnego działania strony internetowej. Nie mogą zostać wyłączone.',
+                                    linkedCategory: 'necessary'
+                                },
+                                {
+                                    title: 'Analityka',
+                                    description: 'Pomagają nam zrozumieć, w jaki sposób odwiedzający korzystają ze strony (Google Analytics).',
+                                    linkedCategory: 'analytics'
+                                },
+                                {
+                                    title: 'Marketing',
+                                    description: 'Służą do śledzenia użytkowników w celu wyświetlania trafniejszych reklam (Meta Pixel).',
+                                    linkedCategory: 'marketing'
+                                }
+                            ]
+                        }
+                    }
+                }
+            },
+            onConsent: function ({ cookie }) {
+                if (cookie.categories.includes('analytics')) {
+                    gtag('consent', 'update', { 'analytics_storage': 'granted' });
+                }
+                if (cookie.categories.includes('marketing')) {
+                    gtag('consent', 'update', {
+                        'ad_storage': 'granted',
+                        'ad_user_data': 'granted',
+                        'ad_personalization': 'granted'
+                    });
+                }
+            },
+            onChange: function ({ cookie }) {
+                let analyticsStatus = cookie.categories.includes('analytics') ? 'granted' : 'denied';
+                let marketingStatus = cookie.categories.includes('marketing') ? 'granted' : 'denied';
+
+                gtag('consent', 'update', { 'analytics_storage': analyticsStatus });
+                gtag('consent', 'update', {
+                    'ad_storage': marketingStatus,
+                    'ad_user_data': marketingStatus,
+                    'ad_personalization': marketingStatus
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
