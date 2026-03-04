@@ -909,7 +909,8 @@
 
             <div class="flex flex-col md:flex-row w-full justify-between items-center gap-4 text-sm text-slate-400">
                 <p>&copy; 2026 System Targowy. Wszelkie prawa zastrzeżone.</p>
-                <div class="flex gap-6">
+                <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+                    <a href="regulamin.html" target="_blank" class="hover:text-white transition-colors">Regulamin</a>
                     <a href="polityka-prywatnosci.html" target="_blank"
                         class="hover:text-white transition-colors">Polityka prywatności</a>
                     <a href="#" data-cc="show-preferencesModal" class="hover:text-white transition-colors">Ustawienia
@@ -1102,18 +1103,6 @@
                 }
             },
             onConsent: function ({ cookie }) {
-                if (cookie.categories.includes('analytics')) {
-                    gtag('consent', 'update', { 'analytics_storage': 'granted' });
-                }
-                if (cookie.categories.includes('marketing')) {
-                    gtag('consent', 'update', {
-                        'ad_storage': 'granted',
-                        'ad_user_data': 'granted',
-                        'ad_personalization': 'granted'
-                    });
-                }
-            },
-            onChange: function ({ cookie }) {
                 let analyticsStatus = cookie.categories.includes('analytics') ? 'granted' : 'denied';
                 let marketingStatus = cookie.categories.includes('marketing') ? 'granted' : 'denied';
 
@@ -1123,6 +1112,53 @@
                     'ad_user_data': marketingStatus,
                     'ad_personalization': marketingStatus
                 });
+
+                // Sygnał dla tagów GTM niestandardowych (np. Meta Pixel)
+                dataLayer.push({
+                    'event': 'consent_ready',
+                    'consent_analytics': analyticsStatus,
+                    'consent_marketing': marketingStatus
+                });
+            },
+            onChange: function ({ cookie, changedCategories }) {
+                let analyticsStatus = cookie.categories.includes('analytics') ? 'granted' : 'denied';
+                let marketingStatus = cookie.categories.includes('marketing') ? 'granted' : 'denied';
+
+                gtag('consent', 'update', { 'analytics_storage': analyticsStatus });
+                gtag('consent', 'update', {
+                    'ad_storage': marketingStatus,
+                    'ad_user_data': marketingStatus,
+                    'ad_personalization': marketingStatus
+                });
+
+                // Sygnał dla tagów GTM niestandardowych (odpał po zmianie opcji)
+                dataLayer.push({
+                    'event': 'consent_update',
+                    'consent_analytics': analyticsStatus,
+                    'consent_marketing': marketingStatus
+                });
+
+                // Fizyczne czyszczenie plików cookie, gdy zgoda zostaje cofnięta
+                if (changedCategories.includes('analytics') && analyticsStatus === 'denied') {
+                    // Usuwamy cookies Google Analytics (_ga i podobne)
+                    document.cookie.split(";").forEach(function (c) {
+                        let name = c.trim().split("=")[0];
+                        if (name.startsWith('_ga') || name.startsWith('_gid')) {
+                            document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                            document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." + window.location.hostname.replace('www.', '') + ";";
+                        }
+                    });
+                }
+                if (changedCategories.includes('marketing') && marketingStatus === 'denied') {
+                    // Usuwamy cookies np. Facebook Pixel, Google Ads (_fbp, _gcl_au)
+                    document.cookie.split(";").forEach(function (c) {
+                        let name = c.trim().split("=")[0];
+                        if (name.startsWith('_fbp') || name.startsWith('_gcl')) {
+                            document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+                            document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." + window.location.hostname.replace('www.', '') + ";";
+                        }
+                    });
+                }
             }
         });
     </script>
