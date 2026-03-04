@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Zbierania Leadów | Zabezpiecz zwrot z targów</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Ukrycie standardowej strzałki details/summary w iOS i Safari */
+        details>summary {
+            list-style: none;
+        }
+
+        details>summary::-webkit-details-marker {
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-slate-900 antialiased bg-white selection:bg-blue-100 selection:text-blue-900">
+
+    <!-- SECTION: HERO -->
+    <section class="bg-slate-50 py-24 lg:py-32 px-4 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            <h1
+                class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight mb-6 tracking-tight">
+                Przestań tracić leady i pieniądze po każdych targach
+            </h1>
+            <h2 class="text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto font-medium">
+                Zamień chaos wizytówek i notatek w zautomatyzowany i natychmiastowy strumień kontaktów. Prosty formularz
+                lub zdjęcie wizytówki i dane, które od razu lądują w Twoim arkuszu lub CRM i są gotowe do pracy.
+            </h2>
+            <div>
+                <a href="#pricing"
+                    class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg py-4 px-10 rounded-lg shadow-sm transition-all transform hover:-translate-y-0.5 focus:ring-4 focus:ring-blue-300">
+                    Zabezpiecz zwrot z targów
+                </a>
+                <p class="mt-4 text-sm text-slate-500 font-medium tracking-wide uppercase">Wdrożenie w 48 godzin</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: PROBLEM (FOMO) -->
+    <section class="bg-white py-20 lg:py-28 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Brutalna rzeczywistość
+                    targowa</h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">Tysiące wydane na stoisko to dopiero początek. Bez
+                    systemowego podejścia, tracisz większość potencjalnych klientów tuż po podaniu ręki.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Karta 1 -->
+                <div class="bg-slate-50 p-8 rounded-xl border border-slate-100">
+                    <div class="mb-4">
+                        <span class="text-5xl font-extrabold text-red-600 tracking-tighter">80%</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-3">Leadów z wizytówek przepada</h3>
+                    <p class="text-slate-600 text-base leading-relaxed">
+                        Trafiają na dno torby, zostają w hotelu lub gubią się w masie materiałów po targach.
+                    </p>
+                </div>
+
+                <!-- Karta 2 -->
+                <div class="bg-slate-50 p-8 rounded-xl border border-slate-100">
+                    <div class="mb-4">
+                        <span class="text-5xl font-extrabold text-red-600 tracking-tighter">5+</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-3">Dni zmarnowanych na spisywanie</h3>
+                    <p class="text-slate-600 text-base leading-relaxed">
+                        Zanim Twój zespół ręcznie przepisze kontakty, uwaga klientów przeminie, zapomną że Cię
+                        odwiedzili. Po odwiedzeniu targów, kto pierwszy uderzy do klienta, ten ma przewagę.
+                    </p>
+                </div>
+
+                <!-- Karta 3 -->
+                <div class="bg-slate-50 p-8 rounded-xl border border-slate-100">
+                    <div class="mb-4">
+                        <span class="text-5xl font-extrabold text-red-600 tracking-tighter">0%</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 mb-3">Mierzalności Twojej inwestycji</h3>
+                    <p class="text-slate-600 text-base leading-relaxed">
+                        Bez scentralizowanej bazy danych zebranej z targów, nie jesteś w stanie realnie policzyć ROI ze
+                        stoiska.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: JAK TO DZIAŁA -->
+    <section class="bg-slate-50 py-20 lg:py-28 px-4 border-y border-slate-200">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">2 drogi do pełnej kontroli
+                    nad leadami</h2>
+                <p class="text-lg text-slate-600 max-w-3xl mx-auto">Dwa proste i zoptymalizowane procesy działające
+                    jednocześnie, które nie odrywają Ciebie ani Twojego klienta od rozmowy i zapobiegają zgubieniu
+                    kontaktu w chaosie podczas targów.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 relative">
+
+                <!-- Droga 1 -->
+                <div
+                    class="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-200 relative z-10 flex flex-col">
+                    <div class="text-center mb-12">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-4">Dla spacerowiczów</h3>
+                        <p class="text-slate-600 text-lg">Dla przypadkowych przechodniów, którzy "tylko się rozglądają",
+                            ale chcą dowiedzieć się więcej o Twojej firmie. Działa nawet wtedy, kiedy handlowiec jest
+                            zajęty rozmową.</p>
+                    </div>
+
+                    <div class="flex flex-col gap-10 relative flex-1">
+                        <!-- Pionowa linia łącząca kroki -->
+                        <div class="absolute top-10 bottom-10 left-1/2 -translate-x-1/2 w-0.5 bg-slate-100 z-0"></div>
+
+                        <!-- Krok 1 -->
+                        <div class="relative z-10 flex flex-col items-center text-center">
+                            <div
+                                class="w-16 h-16 bg-white rounded-2xl shadow-sm border border-slate-200 flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M3.75 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 013.75 9.375v-4.5zM3.75 14.625c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5a1.125 1.125 0 01-1.125-1.125v-4.5zM13.5 4.875c0-.621.504-1.125 1.125-1.125h4.5c.621 0 1.125.504 1.125 1.125v4.5c0 .621-.504 1.125-1.125 1.125h-4.5A1.125 1.125 0 0113.5 9.375v-4.5z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M6.75 6.75h.75v.75h-.75v-.75zM6.75 16.5h.75v.75h-.75v-.75zM16.5 6.75h.75v.75h-.75v-.75zM13.5 13.5h.75v.75h-.75v-.75zM13.5 19.5h.75v.75h-.75v-.75zM19.5 13.5h.75v.75h-.75v-.75zM19.5 19.5h.75v.75h-.75v-.75zM16.5 16.5h.75v.75h-.75v-.75z" />
+                                </svg>
+                            </div>
+                            <div class="text-xs font-bold text-blue-600 mb-1 uppercase tracking-wide">Krok 1</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Skanujesz kod QR</h3>
+                            <p class="text-slate-600 text-sm md:text-base">Twój rozmówca skanuje specjalny kod QR
+                                umiejscowiony na roll-upie, stoisku, ulotce lub Twoim identyfikatorze.</p>
+                        </div>
+
+                        <!-- Krok 2 -->
+                        <div class="relative z-10 flex flex-col items-center text-center">
+                            <div
+                                class="w-16 h-16 bg-white rounded-2xl shadow-sm border border-slate-200 flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="text-xs font-bold text-blue-600 mb-1 uppercase tracking-wide">Krok 2</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Szybki formularz</h3>
+                            <p class="text-slate-600 text-sm md:text-base">Otwiera się super-szybki, brandowany landing
+                                page. Klient zostawia maila i telefon w równe 10 sekund. Z pełną zgodą RODO.</p>
+                        </div>
+
+                        <!-- Krok 3 -->
+                        <div class="relative z-10 flex flex-col items-center text-center">
+                            <div
+                                class="w-16 h-16 bg-white rounded-2xl shadow-sm border border-slate-200 flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                                </svg>
+                            </div>
+                            <div class="text-xs font-bold text-blue-600 mb-1 uppercase tracking-wide">Krok 3</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Automatyzacja</h3>
+                            <p class="text-slate-600 text-sm md:text-base">Kontakt automatycznie ląduje w Twoim arkuszu
+                                (np. Google Sheets) lub CRM. Klient natychmiastowo otrzymuje maila z Twoją ofertą.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Droga 2 -->
+                <div
+                    class="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-slate-200 relative z-10 flex flex-col">
+                    <div class="text-center mb-12">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-4">Dla poważnych rozmów biznesowych</h3>
+                        <p class="text-slate-600 text-lg">Szybciej jest zostawić wizytówkę, a nie wypełniać formularze.
+                            Poważni klienci nie mają na to czasu i ochoty, ale na to jesteś przygotowany.</p>
+                    </div>
+
+                    <div class="flex flex-col gap-10 relative flex-1">
+                        <!-- Pionowa linia łącząca kroki -->
+                        <div class="absolute top-10 bottom-10 left-1/2 -translate-x-1/2 w-0.5 bg-slate-100 z-0"></div>
+
+                        <!-- Krok 1 -->
+                        <div class="relative z-10 flex flex-col items-center text-center">
+                            <div
+                                class="w-16 h-16 bg-white rounded-2xl shadow-sm border border-slate-200 flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z">
+                                    </path>
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="text-xs font-bold text-blue-600 mb-1 uppercase tracking-wide">Krok 1</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Robisz zdjęcie wizytówki klienta</h3>
+                            <p class="text-slate-600 text-sm md:text-base">Zaraz po rozmowie Ty, albo Twój handlowiec,
+                                robisz zdjęcie wizytówki, którą przed chwilą dostałeś, tak żeby się nie zgubiła.</p>
+                        </div>
+
+                        <!-- Krok 2 -->
+                        <div class="relative z-10 flex flex-col items-center text-center">
+                            <div
+                                class="w-16 h-16 bg-white rounded-2xl shadow-sm border border-slate-200 flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="text-xs font-bold text-blue-600 mb-1 uppercase tracking-wide">Krok 2</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Wysłanie zdjęć na dysk</h3>
+                            <p class="text-slate-600 text-sm md:text-base">W drodze do hotelu zaznaczasz wszystkie
+                                zdjęcia wizytówek z dzisiejszego dnia i dodajesz na dysk w chmurze.</p>
+                        </div>
+
+                        <!-- Krok 3 -->
+                        <div class="relative z-10 flex flex-col items-center text-center">
+                            <div
+                                class="w-16 h-16 bg-white rounded-2xl shadow-sm border border-slate-200 flex items-center justify-center mb-4">
+                                <svg class="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 002.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 00-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 00.75-.75 2.25 2.25 0 00-.1-.664m-5.8 0A2.251 2.251 0 0113.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25zM6.75 12h.008v.008H6.75V12zm0 3h.008v.008H6.75V15zm0 3h.008v.008H6.75V18z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div class="text-xs font-bold text-blue-600 mb-1 uppercase tracking-wide">Krok 3</div>
+                            <h3 class="text-lg font-bold text-slate-900 mb-2">Automatyzacja</h3>
+                            <p class="text-slate-600 text-sm md:text-base">Dane z wizytówek są sczytywane i lądują w
+                                Twoim arkuszu, bez konieczności ręcznego klepania danych.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: PORÓWNANIE -->
+    <section class="bg-white py-20 lg:py-28 px-4 border-t border-slate-200">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Dlaczego to jest lepsze?
+                </h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">Zobacz, co dają Ci nasze procesy w porównaniu do
+                    standardowego, ręcznego działania po targach.</p>
+            </div>
+
+            <!-- Nagłówki tabeli dla desktopu -->
+            <div class="hidden md:grid md:grid-cols-2 gap-8 mb-8 pb-4 border-b-2 border-slate-100">
+                <div class="text-center pr-8">
+                    <h3 class="text-xl font-bold text-slate-500 uppercase tracking-wide">Jak działa większość firm</h3>
+                </div>
+                <div class="text-center pl-8">
+                    <h3
+                        class="text-xl font-bold text-blue-600 uppercase tracking-wide flex items-center justify-center">
+                        <svg class="w-6 h-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        Jak Twoja firma wyprzedzi konkurencję
+                    </h3>
+                </div>
+            </div>
+
+            <div class="space-y-12 md:space-y-8 relative">
+                <!-- Pionowa linia rozdzielająca dla desktopu -->
+                <div class="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-slate-200 -translate-x-1/2"></div>
+
+                <!-- Wiersz 1 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start relative group">
+                    <!-- Lewa runda -->
+                    <div class="md:text-right md:pr-4">
+                        <div
+                            class="md:hidden inline-block px-3 py-1 bg-slate-100 text-slate-500 text-xs font-bold uppercase tracking-wider rounded-md mb-3">
+                            Jak działa większość firm</div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-3 flex items-center md:justify-end">
+                            Ręczne przepisywanie danych
+                            <span
+                                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-100 text-red-600 ml-3 shrink-0">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </span>
+                        </h4>
+                        <p class="text-slate-500 leading-relaxed">Większość firm zbiera wizytówki i dopiero po targach
+                            siada, i ręcznie przepisuje wszystkie dane przez kilka dni.</p>
+                    </div>
+
+                    <!-- Prawa runda -->
+                    <div class="md:pl-4">
+                        <div
+                            class="md:hidden inline-block px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-wider rounded-md mb-3">
+                            Jak Twoja firma wyprzedzi konkurencję</div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-3 flex items-center">
+                            <span
+                                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100 text-green-600 mr-3 shrink-0">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </span>
+                            Dane same wpadają do CRM
+                        </h4>
+                        <p
+                            class="text-slate-800 font-medium leading-relaxed bg-blue-50/50 p-4 rounded-lg border border-blue-100">
+                            Ty robisz zdjęcia wizytówek a dane z wizytówek automatycznie lądują w Twoim systemie lub
+                            arkuszu, tego samego dnia którego zostały zebrane.</p>
+                    </div>
+                </div>
+
+                <!-- Wiersz 2 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start relative group">
+                    <!-- Lewa runda -->
+                    <div class="md:text-right md:pr-4">
+                        <div
+                            class="md:hidden inline-block px-3 py-1 bg-slate-100 text-slate-500 text-xs font-bold uppercase tracking-wider rounded-md mb-3">
+                            Jak działa większość firm</div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-3 flex items-center md:justify-end">
+                            Zagubione dane kontaktowe
+                            <span
+                                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-100 text-red-600 ml-3 shrink-0">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </span>
+                        </h4>
+                        <p class="text-slate-500 leading-relaxed">Wiele firm podczas kilkudniowych targów zbiera
+                            wizytówki i kładzie je w różnych miejscach, po kilku dniach, spora część “gdzieś” się
+                            zagubiła, wypadła, została w hotelu.</p>
+                    </div>
+
+                    <!-- Prawa runda -->
+                    <div class="md:pl-4">
+                        <div
+                            class="md:hidden inline-block px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-wider rounded-md mb-3">
+                            Jak Twoja firma wyprzedzi konkurencję</div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-3 flex items-center">
+                            <span
+                                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100 text-green-600 mr-3 shrink-0">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </span>
+                            Wszystkie dane w jednym miejscu
+                        </h4>
+                        <p
+                            class="text-slate-800 font-medium leading-relaxed bg-blue-50/50 p-4 rounded-lg border border-blue-100">
+                            Wystarczy, że handlowcy zrobią zdjęcia wizytówek i dodadzą na dysk, bez zastanawiania się
+                            “czy już ją wpisali”. Po każdym dniu dane są w systemie zabezpieczone przed zgubieniem.</p>
+                    </div>
+                </div>
+
+                <!-- Wiersz 3 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start relative group">
+                    <!-- Lewa runda -->
+                    <div class="md:text-right md:pr-4">
+                        <div
+                            class="md:hidden inline-block px-3 py-1 bg-slate-100 text-slate-500 text-xs font-bold uppercase tracking-wider rounded-md mb-3">
+                            Jak działa większość firm</div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-3 flex items-center md:justify-end">
+                            Kilka dni do kontaktu
+                            <span
+                                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-red-100 text-red-600 ml-3 shrink-0">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </span>
+                        </h4>
+                        <p class="text-slate-500 leading-relaxed">Zazwyczaj handlowcy w pierwsze dni po targach, siedzą
+                            i powoli kontaktują się z klientami. Zanim dojdą do ostatnich kontaktów, klienci już
+                            zapominają, że byli na takim stoisku.</p>
+                    </div>
+
+                    <!-- Prawa runda -->
+                    <div class="md:pl-4">
+                        <div
+                            class="md:hidden inline-block px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-wider rounded-md mb-3">
+                            Jak Twoja firma wyprzedzi konkurencję</div>
+                        <h4 class="text-xl font-bold text-slate-900 mb-3 flex items-center">
+                            <span
+                                class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-green-100 text-green-600 mr-3 shrink-0">
+                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                    stroke-width="3">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg>
+                            </span>
+                            Natychmiastowy kontakt
+                        </h4>
+                        <p
+                            class="text-slate-800 font-medium leading-relaxed bg-blue-50/50 p-4 rounded-lg border border-blue-100">
+                            Kiedy konkurencja ręcznie klepie dane, wiadomości od Ciebie już są na skrzynce klienta.
+                            Wyprzedzasz ich o kilka dni, klient wciąż pamięta spotkanie i dużo łatwiej nawiązać z nim
+                            relację.</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+    <section id="pricing" class="bg-slate-50 py-20 lg:py-28 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 md:mb-20">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Działamy w modelu
+                    integracyjnym</h2>
+                <p class="text-lg text-slate-600 max-w-2xl mx-auto">Budujemy maszynę w Twoim środowisku firmowym, a
+                    następnie obsługujemy ją podczas konkretnych wyjazdów.</p>
+            </div>
+
+            <div class="space-y-16">
+                <!-- Krok 1 -->
+                <div
+                    class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 md:p-10 relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-2 h-full bg-blue-600"></div>
+                    <div class="pl-2">
+                        <div class="mb-8">
+                            <span class="text-blue-600 font-bold uppercase tracking-wider text-sm mb-2 block">Krok
+                                1</span>
+                            <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-2">Wdrożenie Systemu</h3>
+                            <p class="text-slate-600 text-lg">Budujemy Twój prywatny, cyfrowy lejek targowy. <span
+                                    class="font-semibold text-slate-800">Jednorazowa inwestycja.</span></p>
+                        </div>
+
+                        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-10">
+                            <ul class="space-y-4 flex-1">
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-600 mr-3 shrink-0" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-slate-700 text-lg">Konfiguracja kont i arkuszy na Twoim firmowym
+                                        Dysku Google</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-600 mr-3 shrink-0" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-slate-700 text-lg">Stworzenie dedykowanej strony lądowania pod
+                                        kody QR z Twoim logotypem</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-600 mr-3 shrink-0" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-slate-700 text-lg">Połączenie narzędzi do odczytu wizytówek</span>
+                                </li>
+                            </ul>
+
+                            <div
+                                class="bg-slate-50 p-8 rounded-xl border border-slate-100 min-w-[300px] flex flex-col items-center lg:items-start text-center lg:text-left">
+                                <span class="text-slate-500 font-medium tracking-wide">Cena od</span>
+                                <div class="mt-2 mb-6">
+                                    <span class="text-4xl font-extrabold text-slate-900">1800 PLN</span>
+                                    <span class="text-slate-500 font-medium block mt-1">netto</span>
+                                </div>
+                                <a href="#kontakt"
+                                    class="w-full py-3.5 px-6 text-white font-semibold bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors shadow-sm block text-center inline-block cursor-pointer">
+                                    Umów wdrożenie
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Krok 2 -->
+                <div class="pt-8 border-t border-slate-200">
+                    <div class="text-center mb-12">
+                        <span class="text-blue-600 font-bold uppercase tracking-wider text-sm mb-2 block">Krok 2</span>
+                        <h3 class="text-2xl md:text-3xl font-bold text-slate-900 mb-4">Obsługa konkretnych targów</h3>
+                        <p class="text-lg text-slate-600 max-w-2xl mx-auto">Płacisz tylko wtedy, kiedy jedziesz na targi
+                            i realnie zbierasz leady. Wybierz pakiet na event.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch pt-2 lg:px-12">
+
+                        <!-- Pakiet A -->
+                        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 flex flex-col h-full">
+                            <h4 class="text-2xl font-bold text-slate-900 mb-2">Pakiet A: Cyfrowa Teczka Targowa</h4>
+                            <p class="text-slate-500 mb-6">Dla firm, które chcą mieć porządek w danych i własny dział
+                                marketingu do wysyłki.</p>
+
+                            <div class="mb-8">
+                                <span
+                                    class="text-sm text-slate-500 font-medium uppercase tracking-wider block mb-1">Cena
+                                    od</span>
+                                <span class="text-4xl font-extrabold text-slate-900">900 PLN</span>
+                                <span class="text-slate-500 font-medium whitespace-nowrap"> netto / event</span>
+                            </div>
+
+                            <ul class="space-y-4 mb-8 flex-1 w-full">
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-600 mr-3 shrink-0" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-slate-700">Nadzór techniczny nad spływaniem danych podczas trwania
+                                        targów</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-600 mr-3 shrink-0" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-slate-700">Przetworzenie nielimitowanej liczby zdjęć
+                                        wizytówek</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-600 mr-3 shrink-0" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-slate-700">Dostarczenie gotowego, zweryfikowanego arkusza
+                                        kontaktów w 24h</span>
+                                </li>
+                            </ul>
+                            <a href="#kontakt"
+                                class="w-full py-3.5 px-6 text-blue-600 font-semibold border-2 border-slate-200 rounded-lg hover:border-blue-600 hover:text-blue-700 hover:bg-slate-50 transition-colors shadow-sm block text-center cursor-pointer">
+                                Wybierz Pakiet A
+                            </a>
+                        </div>
+
+                        <!-- Pakiet B (Zalecany) -->
+                        <div
+                            class="bg-white rounded-2xl shadow-xl border-2 border-blue-900 p-8 flex flex-col h-full relative z-10 lg:-translate-y-4">
+                            <div
+                                class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-900 text-white text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider">
+                                Zalecane
+                            </div>
+
+                            <h4 class="text-2xl font-bold text-slate-900 mb-2">Pakiet B: Pełen Follow-Up</h4>
+                            <p class="text-slate-500 mb-6">Robimy wszystko za Ciebie. Twój zespół tylko robi zdjęcia.
+                            </p>
+
+                            <div class="mb-8">
+                                <span
+                                    class="text-sm text-slate-500 font-medium uppercase tracking-wider block mb-1">Cena
+                                    od</span>
+                                <span class="text-4xl font-extrabold text-slate-900">2000 PLN</span>
+                                <span class="text-slate-500 font-medium whitespace-nowrap"> netto / event</span>
+                            </div>
+
+                            <ul class="space-y-4 mb-8 flex-1 w-full">
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-600 mr-3 shrink-0" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-slate-700 font-bold">Wszystko z Pakietu A.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-600 mr-3 shrink-0" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-slate-700">Przygotowanie tekstów wiadomości B2B (podziękowanie za
+                                        spotkanie, wysyłka cennika, przypomnienie).</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-600 mr-3 shrink-0" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-slate-700">Pełna obsługa wysyłki maili (po 24 godzinach i po 5
+                                        dniach).</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <svg class="w-6 h-6 text-blue-600 mr-3 shrink-0" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                    <span class="text-slate-700">Raport po targach: kto otworzył ofertę, w co kliknął i
+                                        do kogo należy zadzwonić w pierwszej kolejności.</span>
+                                </li>
+                            </ul>
+                            <a href="#kontakt"
+                                class="w-full py-4 px-6 text-white font-semibold bg-blue-900 hover:bg-blue-800 rounded-lg shadow-md transition-all transform hover:-translate-y-0.5 block text-center cursor-pointer">
+                                Wybierz Pakiet B
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: KONTAKT -->
+    <section id="kontakt" class="bg-white py-20 lg:py-28 px-4 border-t border-slate-200">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
+
+                <!-- Lewa kolumna: Formularz -->
+                <div class="flex-1 w-full max-w-2xl mx-auto lg:mx-0">
+                    <div class="mb-10 text-center lg:text-left">
+                        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4 tracking-tight">Skontaktuj się z
+                            nami</h2>
+                        <p class="text-lg text-slate-600">Wypełnij poniższy formularz, abyśmy mogli przygotować idealnie
+                            dopasowaną ofertę pod Twoje nadchodzące targi.</p>
+                    </div>
+
+                    <form action="#" method="POST" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="first_name" class="block text-sm font-medium text-slate-700 mb-1">Imię <span
+                                        class="text-blue-600">*</span></label>
+                                <input type="text" id="first_name" name="first_name" required
+                                    class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors bg-slate-50 focus:bg-white outline-none">
+                            </div>
+                            <div>
+                                <label for="company" class="block text-sm font-medium text-slate-700 mb-1">Nazwa firmy
+                                    <span class="text-blue-600">*</span></label>
+                                <input type="text" id="company" name="company" required
+                                    class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors bg-slate-50 focus:bg-white outline-none">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Mail <span
+                                        class="text-blue-600">*</span></label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors bg-slate-50 focus:bg-white outline-none">
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-slate-700 mb-1">Numer telefonu
+                                    <span class="text-blue-600">*</span></label>
+                                <input type="tel" id="phone" name="phone" required
+                                    class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors bg-slate-50 focus:bg-white outline-none">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-slate-700 mb-1">Wiadomość</label>
+                            <textarea id="message" name="message" rows="4"
+                                class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors bg-slate-50 focus:bg-white outline-none resize-y"></textarea>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="consent" name="consent" type="checkbox" required
+                                    class="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-600 bg-slate-50 cursor-pointer">
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="consent" class="font-medium text-slate-600 cursor-pointer">
+                                    Wyrażam zgodę na kontakt mailowy i/lub telefoniczny w celu przesłania i
+                                    przedstawienia oferty. <span class="text-blue-600">*</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-md transition-all transform hover:-translate-y-0.5 text-lg">
+                            Wyślij wiadomość
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Prawa kolumna: Bezpośredni kontakt -->
+                <div class="lg:w-1/3 flex flex-col justify-center mt-10 lg:mt-0 max-w-md mx-auto lg:max-w-none">
+                    <div
+                        class="bg-slate-50 p-8 md:p-10 rounded-2xl border border-slate-200 h-full flex flex-col justify-center">
+                        <h3 class="text-2xl font-bold text-slate-900 mb-8">Lub skontaktuj się natychmiast</h3>
+
+                        <div class="space-y-8">
+                            <div class="flex items-start">
+                                <div
+                                    class="w-14 h-14 bg-white rounded-xl shadow-sm border border-slate-200 flex items-center justify-center shrink-0 mr-5">
+                                    <svg class="w-7 h-7 text-blue-600" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-2.896-1.596-5.48-4.18-7.076-7.076l1.293-.97c.362-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                                    </svg>
+                                </div>
+                                <div class="flex flex-col justify-center h-14">
+                                    <span
+                                        class="block text-sm font-medium text-slate-500 mb-0.5 tracking-wide uppercase">Telefon</span>
+                                    <a href="tel:+48796506495"
+                                        class="text-xl font-bold text-slate-900 hover:text-blue-600 transition-colors">796
+                                        506 495</a>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div
+                                    class="w-14 h-14 bg-white rounded-xl shadow-sm border border-slate-200 flex items-center justify-center shrink-0 mr-5">
+                                    <svg class="w-7 h-7 text-blue-600" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" stroke-width="1.5">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                                    </svg>
+                                </div>
+                                <div class="flex flex-col justify-center h-14">
+                                    <span
+                                        class="block text-sm font-medium text-slate-500 mb-0.5 tracking-wide uppercase">Mail</span>
+                                    <a href="mailto:kontakt@twojastrona.pl"
+                                        class="text-lg font-bold text-slate-900 hover:text-blue-600 transition-colors break-all">kontakt@twojastrona.pl</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: FAQ -->
+    <section class="bg-slate-50 py-20 lg:py-28 px-4 border-t border-slate-200">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4 tracking-tight">Często zadawane pytania</h2>
+                <p class="text-lg text-slate-600">Rozwiewamy wszelkie wątpliwości przed wdrożeniem.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- Pytanie 1 -->
+                <details
+                    class="group bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden cursor-pointer"
+                    open>
+                    <summary
+                        class="flex justify-between items-center font-semibold text-lg text-slate-900 p-6 group-open:bg-slate-50 transition-colors">
+                        <span>Czy system działa na hali targowej bez dostępu do Internetu?</span>
+                        <span
+                            class="transition-transform duration-300 group-open:rotate-180 text-blue-600 shrink-0 ml-4">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <div class="text-slate-600 px-6 pb-6 pt-0 group-open:bg-slate-50 leading-relaxed">
+                        Wersja formularza z kodem QR wymaga dostępu do internetu, strukturę budujemy tak, żeby wymagała
+                        minimalnej ilości przetwarzania danych, strona z formularzem jest lekka i ładuje się nawet przy
+                        dużym obciążeniu sieci. Jeśli jednak internet padnie całkowicie, zabezpieczeniem jest opcja
+                        skanu wizytówek która działa nawet w trybie offline.
+                    </div>
+                </details>
+
+                <!-- Pytanie 2 -->
+                <details
+                    class="group bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden cursor-pointer">
+                    <summary
+                        class="flex justify-between items-center font-semibold text-lg text-slate-900 p-6 group-open:bg-slate-50 transition-colors">
+                        <span>Co z wymogami prawnymi i RODO?</span>
+                        <span
+                            class="transition-transform duration-300 group-open:rotate-180 text-blue-600 shrink-0 ml-4">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <div class="text-slate-600 px-6 pb-6 pt-0 group-open:bg-slate-50 leading-relaxed">
+                        Oczywiście. Każdy nasz formularz wyposażony jest w wymagane okienka zaznaczenia (checkboxy) do
+                        zebrania zgody marketingowej, a także podlinkowaną Politykę Prywatności z klauzulą informacyjną
+                        RODO Twojej firmy. Zbierasz leady w 100% legalnie.
+                    </div>
+                </details>
+
+                <!-- Pytanie 3 -->
+                <details
+                    class="group bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden cursor-pointer">
+                    <summary
+                        class="flex justify-between items-center font-semibold text-lg text-slate-900 p-6 group-open:bg-slate-50 transition-colors">
+                        <span>Jak szybko możemy to wszystko wdrożyć?</span>
+                        <span
+                            class="transition-transform duration-300 group-open:rotate-180 text-blue-600 shrink-0 ml-4">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <div class="text-slate-600 px-6 pb-6 pt-0 group-open:bg-slate-50 leading-relaxed">
+                        Standardowe wdrożenie zazwyczaj zajmuje 2-4 dni, staramy się to robić z odpowiednim
+                        wyprzedzeniem przed targami.
+                    </div>
+                </details>
+
+                <!-- Pytanie 4 -->
+                <details
+                    class="group bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden cursor-pointer">
+                    <summary
+                        class="flex justify-between items-center font-semibold text-lg text-slate-900 p-6 group-open:bg-slate-50 transition-colors">
+                        <span>Czy to na pewno będzie działać poprawnie?</span>
+                        <span
+                            class="transition-transform duration-300 group-open:rotate-180 text-blue-600 shrink-0 ml-4">
+                            <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round"
+                                stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24">
+                                <path d="M6 9l6 6 6-6"></path>
+                            </svg>
+                        </span>
+                    </summary>
+                    <div class="text-slate-600 px-6 pb-6 pt-0 group-open:bg-slate-50 leading-relaxed">
+                        Nasze sposoby są przetestowane i wielokrotnie sprawdzone. Dodatkowo, zawsze przed rozpoczęciem
+                        targów przeprowadzamy specjalne testy na gotowej i skończonej konfiguracji.
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: FOOTER -->
+    <footer class="bg-slate-900 pt-16 pb-8 px-4">
+        <div class="max-w-6xl mx-auto flex flex-col items-center">
+
+            <div class="mb-8 text-center">
+                <a href="#" class="text-2xl font-bold text-white tracking-tight">System<span
+                        class="text-blue-500">Targowy</span></a>
+                <p class="text-slate-400 mt-3 max-w-sm text-sm">Nowoczesne narzędzia do ratowania budżetów
+                    marketingowych w świecie B2B i na wydarzeniach offline.</p>
+            </div>
+
+            <div class="w-full h-px bg-slate-800 mb-8"></div>
+
+            <div class="flex flex-col md:flex-row w-full justify-between items-center gap-4 text-sm text-slate-400">
+                <p>&copy; 2026 System Targowy. Wszelkie prawa zastrzeżone.</p>
+                <div class="flex gap-6">
+                    <a href="polityka-prywatnosci.html" target="_blank"
+                        class="hover:text-white transition-colors">Polityka prywatności</a>
+                    <a href="#kontakt" class="hover:text-white transition-colors">Kontakt</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

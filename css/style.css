@@ -1,0 +1,13 @@
+/* 
+ * css/style.css
+ * Customowe style, definicje kolorów, poprawki RWD 
+ */
+
+/* Minimalne poprawki dla stylizacji natywnego elementu details/summary */
+details > summary {
+    list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+    display: none;
+}
