@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pl">
 
 <head>
@@ -68,6 +68,21 @@
         details>summary::-webkit-details-marker {
             display: none;
         }
+
+        /* Efekt hover na kafelkach statystyk — tylko desktop */
+        @media (min-width: 768px) {
+            .stat-card {
+                transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+                will-change: transform;
+            }
+
+            .stat-card:hover {
+                transform: translateY(-12px) scale(1.05);
+                box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.12), 0 8px 16px -6px rgba(0, 0, 0, 0.08);
+                border-color: #e2e8f0;
+                background-color: #ffffff;
+            }
+        }
     </style>
 </head>
 
@@ -126,7 +141,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Karta 1 -->
-                <div class="bg-slate-50 p-8 rounded-xl border border-slate-100">
+                <div class="stat-card bg-slate-50 p-8 rounded-xl border border-slate-100">
                     <div class="mb-4">
                         <span class="text-5xl font-extrabold text-red-600 tracking-tighter">80%</span>
                     </div>
@@ -137,7 +152,7 @@
                 </div>
 
                 <!-- Karta 2 -->
-                <div class="bg-slate-50 p-8 rounded-xl border border-slate-100">
+                <div class="stat-card bg-slate-50 p-8 rounded-xl border border-slate-100">
                     <div class="mb-4">
                         <span class="text-5xl font-extrabold text-red-600 tracking-tighter">5+</span>
                     </div>
@@ -149,7 +164,7 @@
                 </div>
 
                 <!-- Karta 3 -->
-                <div class="bg-slate-50 p-8 rounded-xl border border-slate-100">
+                <div class="stat-card bg-slate-50 p-8 rounded-xl border border-slate-100">
                     <div class="mb-4">
                         <span class="text-5xl font-extrabold text-red-600 tracking-tighter">0%</span>
                     </div>
@@ -863,7 +878,7 @@
                         fizycznie Twoja firma nawiązuje relacje. Wybierasz jeden wariant obsługi eventu.</p>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch pt-2 lg:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch pt-2">
 
                     <!-- Pakiet A -->
                     <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 flex flex-col h-full">
@@ -965,6 +980,37 @@
                             class="w-full py-4 px-6 text-white font-semibold bg-blue-900 hover:bg-blue-800 rounded-lg shadow-md transition-all transform hover:-translate-y-0.5 block text-center cursor-pointer">
                             Wybierz Pakiet B
                         </a>
+                    </div>
+
+                    <!-- Pakiet C -->
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 flex flex-col h-full">
+                        <h4 class="text-2xl font-bold text-slate-900 mb-2">Pakiet C: Specjalna obsługa Targowa</h4>
+                        <p class="text-slate-500 mb-6">Dostosowujemy systemy i&nbsp;rozwiązania do Twojego indywidualnego zapotrzebowania.</p>
+
+                        <div class="mb-8">
+                            <span class="text-sm text-slate-500 font-medium uppercase tracking-wider block mb-1">Cena</span>
+                            <span class="text-3xl font-extrabold text-slate-900">Ustalana indywidualnie</span>
+                        </div>
+
+                        <ul class="space-y-4 mb-8 flex-1 w-full">
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-blue-600 mr-3 shrink-0" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span class="text-slate-700 font-bold">Zawiera wszystko z&nbsp;Pakietu A&nbsp;i&nbsp;B</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-blue-600 mr-3 shrink-0" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <span class="text-slate-700">Zawiera systemy i&nbsp;opcje dostosowane specjalnie pod Twoją firmę</span>
+                            </li>
+                        </ul>
+                        <a href="#kontakt"
+                            class="w-full py-3.5 px-6 text-blue-600 font-semibold border-2 border-slate-200 rounded-lg hover:border-blue-600 hover:text-blue-700 hover:bg-slate-50 transition-colors shadow-sm block text-center cursor-pointer">
+                            Wybierz Pakiet C&nbsp;</a>
                     </div>
 
                 </div>
