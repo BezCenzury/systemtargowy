@@ -1,0 +1,3 @@
+RAW: Google Consent Mode V2 - DomyĹ›lne Ustawienia -->
+    <script>
+        window.dataLayer = window.dat
