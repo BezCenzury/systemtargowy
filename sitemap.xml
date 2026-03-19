@@ -2,27 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
       <loc>https://systemtargowy.pl/</loc>
-      <lastmod>2026-03-04</lastmod>
+      <lastmod>2026-03-19</lastmod>
       <changefreq>weekly</changefreq>
       <priority>1.0</priority>
    </url>
-   <url>
-      <loc>https://systemtargowy.pl/polityka-prywatnosci.html</loc>
-      <lastmod>2026-03-04</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.5</priority>
-   </url>
-   <url>
-      <loc>https://systemtargowy.pl/dziekujemy.html</loc>
-      <lastmod>2026-03-04</lastmod>
-      <changefreq>yearly</changefreq>
-      <priority>0.1</priority>
-   </url>
-   <url>
-      <loc>https://systemtargowy.pl/regulamin.html</loc>
-      <lastmod>2026-03-04</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.5</priority>
-   </url>
-
 </urlset>

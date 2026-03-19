@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(echo \"exit: $?\")",
+      "Bash(while read:*)",
+      "Bash(do echo:*)",
+      "Bash(npm --version)",
+      "Bash(npx --version)",
+      "Bash(where node:*)",
+      "Bash(./tailwindcss.exe -i css/input.css -o css/style.css --minify)",
+      "Bash(for cls:*)",
+      "Bash(grep -c \"$cls\" css/style.css)",
+      "Bash(done)"
+    ]
+  }
+}

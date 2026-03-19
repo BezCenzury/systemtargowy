@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /dziekujemy.html
+Disallow: /polityka-prywatnosci.html
+Disallow: /regulamin.html
 
 Sitemap: https://systemtargowy.pl/sitemap.xml
