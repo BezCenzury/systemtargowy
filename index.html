@@ -11,7 +11,7 @@
             'ad_storage': 'denied',
             'ad_user_data': 'denied',
             'ad_personalization': 'denied',
-            'wait_for_update': 500
+            'wait_for_update': 2000
         });
     </script>
 
@@ -147,6 +147,8 @@
 
     <!-- Cookie Consent CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css">
+    <!-- Cookie Consent JS (ładowane wcześnie dla poprawnej synchronizacji z GTM Consent Mode) -->
+    <script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js"></script>
 
     <!-- Cookie Consent - niebieska kolorystyka (musi być po cookieconsent.css) -->
     <style>
@@ -1608,9 +1610,7 @@
     </script>
 
     <!-- Skrypt Cookie Consent -->
-    <script type="module">
-        import 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js';
-
+    <script>
         CookieConsent.run({
             guiOptions: {
                 consentModal: {
@@ -1675,37 +1675,44 @@
                 let analyticsStatus = cookie.categories.includes('analytics') ? 'granted' : 'denied';
                 let marketingStatus = cookie.categories.includes('marketing') ? 'granted' : 'denied';
 
-                gtag('consent', 'update', { 'analytics_storage': analyticsStatus });
+                // Pojedyncze wywołanie update – GTM aplikuje wszystkie zgody naraz
                 gtag('consent', 'update', {
+                    'analytics_storage': analyticsStatus,
                     'ad_storage': marketingStatus,
                     'ad_user_data': marketingStatus,
                     'ad_personalization': marketingStatus
                 });
 
-                // Sygnał dla tagów GTM niestandardowych (np. Meta Pixel)
-                dataLayer.push({
-                    'event': 'consent_ready',
-                    'consent_analytics': analyticsStatus,
-                    'consent_marketing': marketingStatus
-                });
+                // setTimeout(0) daje GTM jeden tick pętli JS na zaaplikowanie stanu consent
+                // zanim odczyta go przy odpalaniu tagu Meta Pixel przez trigger consent_ready
+                setTimeout(function () {
+                    dataLayer.push({
+                        'event': 'consent_ready',
+                        'consent_analytics': analyticsStatus,
+                        'consent_marketing': marketingStatus
+                    });
+                }, 0);
             },
             onChange: function ({ cookie, changedCategories }) {
                 let analyticsStatus = cookie.categories.includes('analytics') ? 'granted' : 'denied';
                 let marketingStatus = cookie.categories.includes('marketing') ? 'granted' : 'denied';
 
-                gtag('consent', 'update', { 'analytics_storage': analyticsStatus });
+                // Pojedyncze wywołanie update
                 gtag('consent', 'update', {
+                    'analytics_storage': analyticsStatus,
                     'ad_storage': marketingStatus,
                     'ad_user_data': marketingStatus,
                     'ad_personalization': marketingStatus
                 });
 
-                // Sygnał dla tagów GTM niestandardowych (odpał po zmianie opcji)
-                dataLayer.push({
-                    'event': 'consent_update',
-                    'consent_analytics': analyticsStatus,
-                    'consent_marketing': marketingStatus
-                });
+                // setTimeout(0) – jak wyżej, zapewnia kolejność przetwarzania przez GTM
+                setTimeout(function () {
+                    dataLayer.push({
+                        'event': 'consent_update',
+                        'consent_analytics': analyticsStatus,
+                        'consent_marketing': marketingStatus
+                    });
+                }, 0);
 
                 // Fizyczne czyszczenie plików cookie, gdy zgoda zostaje cofnięta
                 if (changedCategories.includes('analytics') && analyticsStatus === 'denied') {
