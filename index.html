@@ -1686,6 +1686,7 @@
         })();
 
         CookieConsent.run({
+            autoShow: true,
             guiOptions: {
                 consentModal: {
                     layout: 'box',
@@ -1867,6 +1868,15 @@
                         }
                     });
                 }
+            }
+        }).then(function () {
+            // Fallback: jeśli cc_cookie nie istnieje po inicjalizacji,
+            // wymuś wyświetlenie banera (np. po ręcznym skasowaniu cookies)
+            var hasCookie = document.cookie.split(';').some(function (c) {
+                return c.trim().indexOf('cc_cookie=') === 0;
+            });
+            if (!hasCookie) {
+                CookieConsent.show();
             }
         });
     </script>
