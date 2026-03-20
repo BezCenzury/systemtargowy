@@ -192,33 +192,35 @@
             --cc-btn-border-radius: 0.75rem;
             --cc-overlay-bg: rgba(0, 0, 0, 0.55);
         }
-        /* Przycisk X zamykający modal zgody */
+        /* Przycisk X zamykający modal zgody – mały, ledwo widoczny */
         .cc-custom-close {
             position: absolute;
-            top: 10px;
-            right: 14px;
-            width: 30px;
-            height: 30px;
+            top: 8px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
             background: none;
             border: none;
-            border-radius: 50%;
-            font-size: 20px;
+            font-size: 14px;
             line-height: 1;
-            color: #94a3b8;
+            color: #cbd5e1;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: color 0.15s, background-color 0.15s;
             z-index: 1;
         }
         .cc-custom-close:hover {
-            color: #475569;
-            background-color: #f1f5f9;
+            color: #94a3b8;
         }
         /* Modal zgody musi mieć position:relative dla X */
         #cc-main .cm {
             position: relative;
+        }
+        /* Większe przyciski w modalu zgody */
+        #cc-main .cm .cm__btns .cm-btn {
+            padding: 0.85rem 1.5rem;
+            font-size: 1rem;
         }
     </style>
 </head>
