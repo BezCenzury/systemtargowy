@@ -1790,9 +1790,6 @@
                     if (modal) modal.appendChild(btn);
                 }
             },
-            // onConsent: odpala się przy KAŻDYM wejściu na stronę gdy zgoda jest zapisana.
-            // Obsługuje powracających użytkowników – aktualizuje stan consent w GTM.
-            // NIE odpala consent_ready (pre-init w <head> już to zrobił, unikamy podwójnego pixela).
             onConsent: function ({ cookie }) {
                 let analyticsStatus = cookie.categories.includes('analytics') ? 'granted' : 'denied';
                 let marketingStatus = cookie.categories.includes('marketing') ? 'granted' : 'denied';
@@ -1803,13 +1800,6 @@
                     'ad_user_data': marketingStatus,
                     'ad_personalization': marketingStatus
                 });
-            },
-
-            // onFirstConsent: odpala się TYLKO przy pierwszym kliknięciu "Akceptuj" (nowy użytkownik).
-            // 500ms daje GTM czas na przetworzenie consent update zanim oceni tag Meta Pixel.
-            onFirstConsent: function ({ cookie }) {
-                let analyticsStatus = cookie.categories.includes('analytics') ? 'granted' : 'denied';
-                let marketingStatus = cookie.categories.includes('marketing') ? 'granted' : 'denied';
 
                 setTimeout(function () {
                     dataLayer.push({
@@ -1817,14 +1807,13 @@
                         'consent_analytics': analyticsStatus,
                         'consent_marketing': marketingStatus
                     });
-                }, 500);
+                }, 0);
             },
 
             onChange: function ({ cookie, changedCategories }) {
                 let analyticsStatus = cookie.categories.includes('analytics') ? 'granted' : 'denied';
                 let marketingStatus = cookie.categories.includes('marketing') ? 'granted' : 'denied';
 
-                // Aktualizacja stanu consent w GTM
                 gtag('consent', 'update', {
                     'analytics_storage': analyticsStatus,
                     'ad_storage': marketingStatus,
@@ -1832,7 +1821,6 @@
                     'ad_personalization': marketingStatus
                 });
 
-                // 500ms – jak w onFirstConsent, zapewnia poprawną kolejność w GTM
                 setTimeout(function () {
                     dataLayer.push({
                         'event': 'consent_update',
