@@ -1687,6 +1687,7 @@
 
         CookieConsent.run({
             autoShow: true,
+            lazyHtmlGeneration: false,
             guiOptions: {
                 consentModal: {
                     layout: 'box',
@@ -1869,16 +1870,17 @@
                     });
                 }
             }
-        }).then(function () {
-            // Fallback: jeśli cc_cookie nie istnieje po inicjalizacji,
-            // wymuś wyświetlenie banera (np. po ręcznym skasowaniu cookies)
+        });
+
+        // Fallback: jeśli cc_cookie nieobecne po init, wymuś baner
+        setTimeout(function () {
             var hasCookie = document.cookie.split(';').some(function (c) {
                 return c.trim().indexOf('cc_cookie=') === 0;
             });
             if (!hasCookie) {
                 CookieConsent.show();
             }
-        });
+        }, 200);
     </script>
 
     <!-- Pływający przycisk CTA -->
