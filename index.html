@@ -1670,6 +1670,21 @@
 
     <!-- Skrypt Cookie Consent -->
     <script>
+        // Jeśli cc_cookie zostało skasowane z przeglądarki, wyczyść localStorage
+        // żeby biblioteka nie pamiętała starego stanu i pokazała baner od nowa
+        (function () {
+            var hasCookie = document.cookie.split(';').some(function (c) {
+                return c.trim().indexOf('cc_cookie=') === 0;
+            });
+            if (!hasCookie && window.localStorage) {
+                Object.keys(localStorage).filter(function (k) {
+                    return k.indexOf('cc_') === 0 || k === 'cookieconsent';
+                }).forEach(function (k) {
+                    localStorage.removeItem(k);
+                });
+            }
+        })();
+
         CookieConsent.run({
             guiOptions: {
                 consentModal: {
