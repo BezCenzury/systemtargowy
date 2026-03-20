@@ -175,18 +175,50 @@
     <!-- Cookie Consent JS (ładowane wcześnie dla poprawnej synchronizacji z GTM Consent Mode) -->
     <script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.umd.js"></script>
 
-    <!-- Cookie Consent - niebieska kolorystyka (musi być po cookieconsent.css) -->
+    <!-- Cookie Consent - styl i kolorystyka -->
     <style>
         :root {
+            /* Przycisk główny (Akceptuj wszystkie) – niebieski */
             --cc-btn-primary-bg: #2563eb;
             --cc-btn-primary-hover-bg: #1d4ed8;
             --cc-btn-primary-text: #fff;
-            --cc-btn-secondary-bg: #eff6ff;
-            --cc-btn-secondary-hover-bg: #dbeafe;
-            --cc-btn-secondary-text: #2563eb;
+            /* Przyciski drugorzędne (Tylko niezbędne, Zarządzaj) – szare */
+            --cc-btn-secondary-bg: #f1f5f9;
+            --cc-btn-secondary-hover-bg: #e2e8f0;
+            --cc-btn-secondary-text: #475569;
+            /* Pozostałe */
             --cc-toggle-on-bg: #2563eb;
             --cc-link-color: #2563eb;
             --cc-btn-border-radius: 0.75rem;
+            --cc-overlay-bg: rgba(0, 0, 0, 0.55);
+        }
+        /* Przycisk X zamykający modal zgody */
+        .cc-custom-close {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            width: 30px;
+            height: 30px;
+            background: none;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            line-height: 1;
+            color: #94a3b8;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.15s, background-color 0.15s;
+            z-index: 1;
+        }
+        .cc-custom-close:hover {
+            color: #475569;
+            background-color: #f1f5f9;
+        }
+        /* Modal zgody musi mieć position:relative dla X */
+        #cc-main .cm {
+            position: relative;
         }
     </style>
 </head>
@@ -1640,14 +1672,14 @@
             guiOptions: {
                 consentModal: {
                     layout: 'box',
-                    position: 'bottom right',
-                    equalWeightButtons: true,
+                    position: 'middle center',  // wyśrodkowany, blokujący overlay
+                    equalWeightButtons: false,   // "Akceptuj" wyróżniony, reszta szara
                     flipButtons: false
                 },
                 preferencesModal: {
                     layout: 'box',
                     position: 'right',
-                    equalWeightButtons: true,
+                    equalWeightButtons: false,
                     flipButtons: false
                 }
             },
@@ -1662,8 +1694,8 @@
                 translations: {
                     pl: {
                         consentModal: {
-                            title: 'Szanujemy Twoją prywatność',
-                            description: 'Używamy plików cookies, aby zapewnić prawidłowe działanie strony systemtargowy.pl, analizować ruch oraz prowadzić działania reklamowe.',
+                            title: 'Dostosuj preferencje dotyczące zgody',
+                            description: 'Używamy plików cookie, aby zapewnić prawidłowe działanie strony systemtargowy.pl i wykonywanie określonych funkcji. Szczegółowe informacje na temat wszystkich plików cookie odpowiadających poszczególnym kategoriom zgody znajdują się poniżej.<br><br>Pliki cookie sklasyfikowane jako „niezbędne" są przechowywane w przeglądarce użytkownika, ponieważ są niezbędne do włączenia podstawowych funkcji witryny.<br><br>Korzystamy również z plików cookie innych firm, które pomagają nam analizować sposób korzystania ze strony oraz dostarczać użytkownikowi trafnych reklam. Tego typu pliki cookie będą przechowywane w przeglądarce tylko za uprzednią zgodą użytkownika.',
                             acceptAllBtn: 'Akceptuj wszystkie',
                             acceptNecessaryBtn: 'Tylko niezbędne',
                             showPreferencesBtn: 'Zarządzaj opcjami',
@@ -1678,51 +1710,121 @@
                             sections: [
                                 {
                                     title: 'Niezbędne pliki cookies',
-                                    description: 'Wymagane do poprawnego działania strony internetowej. Nie mogą zostać wyłączone.',
-                                    linkedCategory: 'necessary'
+                                    description: 'Niezbędne pliki cookie mają kluczowe znaczenie dla podstawowych funkcji witryny i witryna nie będzie działać w zamierzony sposób bez nich. Te pliki cookie nie przechowują żadnych danych umożliwiających identyfikację osoby.',
+                                    linkedCategory: 'necessary',
+                                    cookieTable: {
+                                        headers: { name: 'Plik cookie', duration: 'Czas trwania', description: 'Opis' },
+                                        body: [
+                                            {
+                                                name: 'cc_cookie',
+                                                duration: '1 rok',
+                                                description: 'CookieConsent ustawia ten plik cookie w celu zapamiętania preferencji zgody użytkownika. Nie zbiera ani nie przechowuje żadnych danych osobowych.'
+                                            }
+                                        ]
+                                    }
                                 },
                                 {
                                     title: 'Analityka',
-                                    description: 'Pomagają nam zrozumieć, w&nbsp;jaki sposób odwiedzający korzystają ze strony (Google Analytics).',
-                                    linkedCategory: 'analytics'
+                                    description: 'Analityczne pliki cookie służą do zrozumienia, w jaki sposób użytkownicy wchodzą w interakcję z witryną. Te pliki cookie pomagają dostarczać informacje o metrykach liczby odwiedzających, współczynniku odrzuceń, źródle ruchu itp.',
+                                    linkedCategory: 'analytics',
+                                    cookieTable: {
+                                        headers: { name: 'Plik cookie', duration: 'Czas trwania', description: 'Opis' },
+                                        body: [
+                                            {
+                                                name: '_ga',
+                                                duration: '1 rok 1 miesiąc',
+                                                description: 'Google Analytics ustawia ten plik cookie, aby zbierać dane dotyczące odwiedzających, sesji i kampanii. Plik cookie przechowuje informacje w sposób zanonimizowany i przydziela użytkownikom losowo wygenerowany numer.'
+                                            },
+                                            {
+                                                name: '_ga_*',
+                                                duration: '1 rok 1 miesiąc',
+                                                description: 'Google Analytics 4 ustawia ten plik cookie w celu przechowywania i zliczania odsłon stron.'
+                                            },
+                                            {
+                                                name: '_gid',
+                                                duration: '1 dzień',
+                                                description: 'Google Analytics ustawia ten plik cookie w celu przechowywania informacji o sposobie korzystania z witryny przez odwiedzających. Resetuje się co 24 godziny.'
+                                            },
+                                            {
+                                                name: '_gat_UA-*',
+                                                duration: '1 minuta',
+                                                description: 'Google Analytics ustawia ten plik cookie w celu ograniczenia liczby żądań do serwera Google Analytics.'
+                                            }
+                                        ]
+                                    }
                                 },
                                 {
                                     title: 'Marketing',
-                                    description: 'Służą do śledzenia użytkowników w&nbsp;celu wyświetlania trafniejszych reklam (Meta Pixel).',
-                                    linkedCategory: 'marketing'
+                                    description: 'Reklamowe pliki cookie służą do dostarczania użytkownikom spersonalizowanych reklam w oparciu o strony, które odwiedzili wcześniej, oraz do analizowania skuteczności kampanii reklamowej.',
+                                    linkedCategory: 'marketing',
+                                    cookieTable: {
+                                        headers: { name: 'Plik cookie', duration: 'Czas trwania', description: 'Opis' },
+                                        body: [
+                                            {
+                                                name: '_fbp',
+                                                duration: '3 miesiące',
+                                                description: 'Meta (Facebook) ustawia ten plik cookie w celu wyświetlania trafniejszych reklam na Facebooku i w sieci reklamowej Meta po odwiedzeniu witryny.'
+                                            },
+                                            {
+                                                name: '_gcl_au',
+                                                duration: '3 miesiące',
+                                                description: 'Google Tag Manager ustawia ten plik cookie, aby sprawdzić skuteczność reklamową witryn korzystających z usług Google Ads.'
+                                            }
+                                        ]
+                                    }
                                 }
                             ]
                         }
                     }
                 }
             },
+            // Dodaje przycisk X zamykający modal zgody (bez zapisywania preferencji)
+            onModalShow: function ({ modalName }) {
+                if (modalName === 'consentModal' && !document.querySelector('.cc-custom-close')) {
+                    var btn = document.createElement('button');
+                    btn.className = 'cc-custom-close';
+                    btn.innerHTML = '&times;';
+                    btn.setAttribute('aria-label', 'Zamknij');
+                    btn.addEventListener('click', function () { CookieConsent.hide(); });
+                    var modal = document.querySelector('#cc-main .cm');
+                    if (modal) modal.appendChild(btn);
+                }
+            },
+            // onConsent: odpala się przy KAŻDYM wejściu na stronę gdy zgoda jest zapisana.
+            // Obsługuje powracających użytkowników – aktualizuje stan consent w GTM.
+            // NIE odpala consent_ready (pre-init w <head> już to zrobił, unikamy podwójnego pixela).
             onConsent: function ({ cookie }) {
                 let analyticsStatus = cookie.categories.includes('analytics') ? 'granted' : 'denied';
                 let marketingStatus = cookie.categories.includes('marketing') ? 'granted' : 'denied';
 
-                // Pojedyncze wywołanie update – GTM aplikuje wszystkie zgody naraz
                 gtag('consent', 'update', {
                     'analytics_storage': analyticsStatus,
                     'ad_storage': marketingStatus,
                     'ad_user_data': marketingStatus,
                     'ad_personalization': marketingStatus
                 });
+            },
 
-                // setTimeout(0) daje GTM jeden tick pętli JS na zaaplikowanie stanu consent
-                // zanim odczyta go przy odpalaniu tagu Meta Pixel przez trigger consent_ready
+            // onFirstConsent: odpala się TYLKO przy pierwszym kliknięciu "Akceptuj" (nowy użytkownik).
+            // 500ms daje GTM czas na przetworzenie consent update zanim oceni tag Meta Pixel.
+            onFirstConsent: function ({ cookie }) {
+                let analyticsStatus = cookie.categories.includes('analytics') ? 'granted' : 'denied';
+                let marketingStatus = cookie.categories.includes('marketing') ? 'granted' : 'denied';
+
                 setTimeout(function () {
                     dataLayer.push({
                         'event': 'consent_ready',
                         'consent_analytics': analyticsStatus,
                         'consent_marketing': marketingStatus
                     });
-                }, 0);
+                }, 500);
             },
+
             onChange: function ({ cookie, changedCategories }) {
                 let analyticsStatus = cookie.categories.includes('analytics') ? 'granted' : 'denied';
                 let marketingStatus = cookie.categories.includes('marketing') ? 'granted' : 'denied';
 
-                // Pojedyncze wywołanie update
+                // Aktualizacja stanu consent w GTM
                 gtag('consent', 'update', {
                     'analytics_storage': analyticsStatus,
                     'ad_storage': marketingStatus,
@@ -1730,14 +1832,14 @@
                     'ad_personalization': marketingStatus
                 });
 
-                // setTimeout(0) – jak wyżej, zapewnia kolejność przetwarzania przez GTM
+                // 500ms – jak w onFirstConsent, zapewnia poprawną kolejność w GTM
                 setTimeout(function () {
                     dataLayer.push({
                         'event': 'consent_update',
                         'consent_analytics': analyticsStatus,
                         'consent_marketing': marketingStatus
                     });
-                }, 0);
+                }, 500);
 
                 // Fizyczne czyszczenie plików cookie, gdy zgoda zostaje cofnięta
                 if (changedCategories.includes('analytics') && analyticsStatus === 'denied') {
