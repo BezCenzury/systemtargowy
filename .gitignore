@@ -3,3 +3,8 @@ tailwindcss.exe
 node_modules/
 .DS_Store
 *.log
+*.tmp
+Thumbs.db
+desktop.ini
+test_encode.txt
+CLAUDE.md
