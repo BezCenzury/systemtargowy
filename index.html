@@ -1354,16 +1354,6 @@
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label for="first_name" class="block text-sm font-medium text-slate-700 mb-1">Imię <span class="text-blue-600">*</span></label>
-                            <input type="text" id="first_name" name="first_name" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors bg-slate-50 focus:bg-white outline-none">
-                        </div>
-                        <div>
-                            <label for="company" class="block text-sm font-medium text-slate-700 mb-1">Nazwa firmy <span class="text-blue-600">*</span></label>
-                            <input type="text" id="company" name="company" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors bg-slate-50 focus:bg-white outline-none">
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
                             <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Mail <span class="text-blue-600">*</span></label>
                             <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors bg-slate-50 focus:bg-white outline-none">
                         </div>
@@ -1381,7 +1371,7 @@
                             <input id="consent" name="consent" type="checkbox" required class="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-600 bg-slate-50 cursor-pointer">
                         </div>
                         <div class="ml-3 text-sm">
-                            <label for="consent" class="font-medium text-slate-600 cursor-pointer text-xs leading-relaxed">
+                            <label for="consent" class="font-medium text-slate-600 cursor-pointer text-sm leading-relaxed">
                                 Wyrażasz zgodę na kontakt telefoniczny i/lub mailowy w&nbsp;celu obsługi niniejszego zgłoszenia. Wyrażasz zgodę na otrzymywanie informacji handlowych środkami komunikacji elektronicznej wysyłanymi przez systemtargowy.pl oraz na wykorzystanie komunikacji email w&nbsp;celach marketingowych (<a href="polityka-prywatnosci.html" target="_blank" class="text-blue-600 hover:underline font-semibold">Polityka Prywatności</a>) <span class="text-blue-600">*</span>
                             </label>
                         </div>
@@ -1534,7 +1524,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const form = document.getElementById('contactForm');
             const statusDiv = document.getElementById('formStatus');
-            const webhookUrl = 'https://hook.eu2.make.com/upegpnbboark4ebpu4cptdz6ocyyubnx';
+            const webhookUrl = 'https://n8n.systemtargowy.pl/webhook/kontakty-st-lm';
             const storageKey = 'savedFormData';
 
             // Funkcja do walidacji e-mail
@@ -1583,8 +1573,22 @@
                     submitBtn.innerText = 'Wysyłanie...';
 
                     const formData = new FormData(form);
-                    const data = Object.fromEntries(formData.entries());
-                    data.timestamp = new Date().toISOString(); // Dodajemy datę, dla łatwiejszego trackingu po stronie Make
+                    const raw = Object.fromEntries(formData.entries());
+                    const data = {
+                        email: raw.email || '',
+                        phone: raw.phone || '',
+                        message: raw.message || '',
+                        ip: await (async () => {
+                            try {
+                                const r = await fetch('https://api.ipify.org?format=json');
+                                const j = await r.json();
+                                return j.ip || '';
+                            } catch (_) {
+                                return '';
+                            }
+                        })(),
+                        source_url: window.location.href
+                    };
 
                     // Ręczna Walidacja maila FrontEndowa
                     if (!validateEmail(data.email)) {
