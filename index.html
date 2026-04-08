@@ -1355,11 +1355,12 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Mail <span class="text-blue-600">*</span></label>
-                            <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors bg-slate-50 focus:bg-white outline-none">
+                            <input type="email" id="email" name="email" required autocomplete="email" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors bg-slate-50 focus:bg-white outline-none">
+                            <span id="emailError" class="hidden mt-1 text-xs text-red-500">Podaj poprawny adres e-mail (wymagany znak @)</span>
                         </div>
                         <div>
                             <label for="phone" class="block text-sm font-medium text-slate-700 mb-1">Numer telefonu <span class="text-blue-600">*</span></label>
-                            <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors bg-slate-50 focus:bg-white outline-none">
+                            <input type="tel" id="phone" name="phone" required inputmode="numeric" autocomplete="tel" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition-colors bg-slate-50 focus:bg-white outline-none">
                         </div>
                     </div>
                     <div>
@@ -1371,7 +1372,7 @@
                             <input id="consent" name="consent" type="checkbox" required class="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-600 bg-slate-50 cursor-pointer">
                         </div>
                         <div class="ml-3 text-sm">
-                            <label for="consent" class="font-medium text-slate-600 cursor-pointer text-sm leading-relaxed">
+                            <label for="consent" class="font-medium text-slate-600 cursor-pointer text-xs leading-relaxed">
                                 Wyrażasz zgodę na kontakt telefoniczny i/lub mailowy w&nbsp;celu obsługi niniejszego zgłoszenia. Wyrażasz zgodę na otrzymywanie informacji handlowych środkami komunikacji elektronicznej wysyłanymi przez systemtargowy.pl oraz na wykorzystanie komunikacji email w&nbsp;celach marketingowych (<a href="polityka-prywatnosci.html" target="_blank" class="text-blue-600 hover:underline font-semibold">Polityka Prywatności</a>) <span class="text-blue-600">*</span>
                             </label>
                         </div>
@@ -1533,6 +1534,56 @@
                 return re.test(String(email).toLowerCase());
             }
 
+            // Normalizacja numeru telefonu do formatu +48 XXX XXX XXX
+            function normalizePhone(raw) {
+                let digits = raw.replace(/\D/g, '');
+                if (digits.startsWith('48') && digits.length > 9) digits = digits.slice(2);
+                if (digits.startsWith('0')) digits = digits.slice(1);
+                digits = digits.slice(-9);
+                if (digits.length < 9) return raw; // zwróć oryginał jeśli za krótki
+                return `+48 ${digits.slice(0,3)} ${digits.slice(3,6)} ${digits.slice(6,9)}`;
+            }
+
+            // Pole telefon: blokuj nie-cyfry podczas wpisywania
+            const phoneInput = document.getElementById('phone');
+            if (phoneInput) {
+                phoneInput.addEventListener('input', () => {
+                    const pos = phoneInput.selectionStart;
+                    const cleaned = phoneInput.value.replace(/\D/g, '');
+                    if (phoneInput.value !== cleaned) {
+                        phoneInput.value = cleaned;
+                        phoneInput.setSelectionRange(pos - 1, pos - 1);
+                    }
+                });
+                phoneInput.addEventListener('keydown', (e) => {
+                    const allowed = ['Backspace','Delete','Tab','ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End'];
+                    if (!allowed.includes(e.key) && !/^\d$/.test(e.key) && !e.ctrlKey && !e.metaKey) {
+                        e.preventDefault();
+                    }
+                });
+            }
+
+            // Pole email: walidacja @ na blur
+            const emailInput = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+            if (emailInput && emailError) {
+                emailInput.addEventListener('blur', () => {
+                    if (emailInput.value && !validateEmail(emailInput.value)) {
+                        emailError.classList.remove('hidden');
+                        emailInput.classList.add('border-red-400');
+                    } else {
+                        emailError.classList.add('hidden');
+                        emailInput.classList.remove('border-red-400');
+                    }
+                });
+                emailInput.addEventListener('input', () => {
+                    if (validateEmail(emailInput.value)) {
+                        emailError.classList.add('hidden');
+                        emailInput.classList.remove('border-red-400');
+                    }
+                });
+            }
+
             // Funkcja do wyświetlania wiadomości z&nbsp;odpowiednim statusem
             function showMessage(msg, type) {
                 statusDiv.textContent = msg;
@@ -1576,7 +1627,7 @@
                     const raw = Object.fromEntries(formData.entries());
                     const data = {
                         email: raw.email || '',
-                        phone: raw.phone || '',
+                        phone: normalizePhone(raw.phone || ''),
                         message: raw.message || '',
                         ip: await (async () => {
                             try {
